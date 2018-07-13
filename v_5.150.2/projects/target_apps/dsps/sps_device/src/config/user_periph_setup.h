@@ -37,7 +37,7 @@
 #undef CFG_UART_SW_FLOW_CTRL
 
 /// Available baud rates 115200, 57600, 38400, 19200, 9600
-#define CFG_UART_SPS_BAUDRATE       UART_BAUDRATE_115K2
+#define CFG_UART_SPS_BAUDRATE       UART_BAUDRATE_38K4
 
 /* Enable WKUPCT. Required by wkupct_quadec driver. */
     #define WKUP_ENABLED
