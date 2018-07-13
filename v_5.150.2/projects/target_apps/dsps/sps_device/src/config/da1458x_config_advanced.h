@@ -41,7 +41,7 @@
 /*      -LP_CLK_RCX20       External internal RCX20 clock                                                       */
 /*      -LP_CLK_FROM_OTP    Use the selection in the corresponding filed of OTP Header                          */
 /****************************************************************************************************************/
-    #define CFG_LP_CLK              LP_CLK_XTAL32    
+    #define CFG_LP_CLK              LP_CLK_RCX20    
 
 /****************************************************************************************************************/
 /* If defined the application uses a hadrcoded value for XTAL16M trimming. Should be disabled for devices       */
