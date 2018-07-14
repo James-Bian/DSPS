@@ -33,7 +33,7 @@
  ****************************************************************************************
  */
 
-#define CFG_UART_HW_FLOW_CTRL
+#under CFG_UART_HW_FLOW_CTRL
 #undef CFG_UART_SW_FLOW_CTRL
 
 /// Available baud rates 115200, 57600, 38400, 19200, 9600
