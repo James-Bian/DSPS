@@ -159,7 +159,7 @@ static const struct advertise_configuration user_adv_conf = {
 #define USER_ADVERTISE_SCAN_RESPONSE_DATA_LEN (sizeof(USER_ADVERTISE_SCAN_RESPONSE_DATA)-1)
 
 /// Device name to be placed in advertising or scan response data
-#define USER_DEVICE_NAME    "KARAOKE PALYER"
+#define USER_DEVICE_NAME    "KARAOKE PLAYER"
 
 /// Device name length
 #define USER_DEVICE_NAME_LEN (sizeof(USER_DEVICE_NAME)-1)
