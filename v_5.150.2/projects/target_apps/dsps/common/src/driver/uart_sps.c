@@ -40,7 +40,7 @@
  * DEFINES
  *****************************************************************************************
  */
- 
+ extern uint8_t uart_buff_tmp[8]={0};
 /*
  * ENUMERATION DEFINITIONS
  *****************************************************************************************
@@ -521,7 +521,11 @@ void uart_sps_read(uint8_t *bufptr, uint32_t size, void (*callback) (uint8_t, ui
     uart_sps_env.rx.size        = size;
     uart_sps_env.rx.bufptr      = bufptr;
     uart_sps_env.rx.callback    = callback;
-
+//		uart_buff_tmp[0]=*uart_sps_env.rx.bufptr;
+//		uart_sps_env.rx.bufptr++;
+//		uart_buff_tmp[1]=*uart_sps_env.rx.bufptr;
+//		uart_sps_send(&uart_buff_tmp[0],1);
+//	  uart_sps_send(&uart_buff_tmp[1],1);
     // Start data transaction
     uart_rec_data_avail_setf(1);
 }
@@ -539,6 +543,12 @@ void uart_sps_write(uint8_t *bufptr, uint32_t size, void (*callback) (uint8_t))
     uart_sps_env.tx.callback    = callback; 
 
     uart_thr_empty_setf(1);
+}
+
+void uart_sps_send(uint8_t *bufptr, uint32_t size)
+{
+	uart_sps_write(bufptr,size,NULL);
+	uart_sps_finish_transfers();
 }
 
 void uart_sps_register_flow_ctrl_cb(void (*callback) (bool))

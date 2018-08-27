@@ -160,5 +160,8 @@ bool uart_sps_is_rx_fifo_empty(void);
  */
 bool uart_sps_fifo_check(void);
 
+void uart_sps_send(uint8_t *bufptr, uint32_t size);
+
 /// @} UART
 #endif /* _UART_SPS_H_ */
+
