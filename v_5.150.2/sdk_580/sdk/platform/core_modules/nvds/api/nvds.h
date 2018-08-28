@@ -310,6 +310,8 @@ static const nvds_tag_len_t      NVDS_LEN_AFH_THSMIN                 = 1;
 static const nvds_tag_len_t      NVDS_LEN_BT_LINK_KEY                = 22;
 static const nvds_tag_len_t      NVDS_LEN_BLE_LINK_KEY               = 48;
 
+extern struct bd_addr dev_bdaddr __attribute__((section("retention_mem_area0"), zero_init));
+
 struct nvds_data_struct
 {
     uint32_t    NVDS_VALIDATION_FLAG;

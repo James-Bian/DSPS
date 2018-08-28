@@ -107,6 +107,29 @@ void user_scheduler_init(void)
 
 /**
  ****************************************************************************************
+ * @brief       check uart cmd
+ * @return      none
+ ****************************************************************************************
+ */
+void uart_rx_cmd_check(uint8_t *rx_ptr)
+{
+	if(   ((*(rx_ptr+0))==0xAA) && ((*(rx_ptr+1))==0x40)&& 
+				((*(rx_ptr+2))==0x00) && ((*(rx_ptr+3))==0xEA)  )
+		{
+			//uart_sps_send("MAC",strlen("MAC"));
+			uart_sps_send(dev_bdaddr.addr,6);
+		}
+//	else if(   ((*(rx_ptr+0))==0xAA) && ((*(rx_ptr+1))==0x8C)&& 
+//				((*(rx_ptr+2))==0x00) && ((*(rx_ptr+3))==0x36)  )
+//		{
+//			uart_sps_send("PWROFF",strlen("PWROFF"));
+//		} 
+	else 
+		return;
+}
+
+/**
+ ****************************************************************************************
  * @brief       receive callback function will handle uart data reception
  *
  * @param[in]   res (status: UART_STATUS_OK, UART_STATUS_ERROR, UART_STATUS_INIT)
@@ -118,10 +141,12 @@ void user_scheduler_init(void)
 static void uart_rx_callback(uint8_t res, uint32_t read_size)
 {
     uint8_t *periph_rx_ptr = NULL;
+		uint8_t *rx_p=periph_to_ble_buffer.data_ptr+periph_to_ble_buffer.writeIdx;
     //function called from uart receive isr
     switch (res)
     {
-        case UART_STATUS_OK:
+        case UART_STATUS_OK:											
+						uart_rx_cmd_check(rx_p);					
             user_periph_push(&periph_rx_ptr, read_size);
             break;
         case UART_STATUS_INIT:
