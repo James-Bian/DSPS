@@ -521,11 +521,7 @@ void uart_sps_read(uint8_t *bufptr, uint32_t size, void (*callback) (uint8_t, ui
     uart_sps_env.rx.size        = size;
     uart_sps_env.rx.bufptr      = bufptr;
     uart_sps_env.rx.callback    = callback;
-//		uart_buff_tmp[0]=*uart_sps_env.rx.bufptr;
-//		uart_sps_env.rx.bufptr++;
-//		uart_buff_tmp[1]=*uart_sps_env.rx.bufptr;
-//		uart_sps_send(&uart_buff_tmp[0],1);
-//	  uart_sps_send(&uart_buff_tmp[1],1);
+
     // Start data transaction
     uart_rec_data_avail_setf(1);
 }
