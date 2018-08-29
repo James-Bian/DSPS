@@ -113,11 +113,21 @@ void user_scheduler_init(void)
  */
 void uart_rx_cmd_check(uint8_t *rx_ptr)
 {
+	static uint8_t mac_cmd[10]={0xAA,0x41,0x06,0,0,0,0,0,0,0};
 	if(   ((*(rx_ptr+0))==0xAA) && ((*(rx_ptr+1))==0x40)&& 
 				((*(rx_ptr+2))==0x00) && ((*(rx_ptr+3))==0xEA)  )
 		{
-			//uart_sps_send("MAC",strlen("MAC"));
-			uart_sps_send(dev_bdaddr.addr,6);
+			uint8_t i,j;
+			for(i=0;i<=5;i++)
+			{
+			  mac_cmd[3+i]=dev_bdaddr.addr[i];
+			}
+			mac_cmd[9] = 0;
+			for(j=0;j<=8;j++)
+			{
+			  mac_cmd[9] += mac_cmd[j];
+			}
+			uart_sps_send(mac_cmd, 10);
 		}
 //	else if(   ((*(rx_ptr+0))==0xAA) && ((*(rx_ptr+1))==0x8C)&& 
 //				((*(rx_ptr+2))==0x00) && ((*(rx_ptr+3))==0x36)  )
